@@ -1,0 +1,2 @@
+{:require  [tomatee.core]
+ :init-fns [tomatee.core/init!]}
