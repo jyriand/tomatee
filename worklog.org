@@ -1,0 +1,63 @@
+* Project description
+
+Tomatee is a simple web application for time management based on [[http://pomodorotechnique.com/] [pomodoro technique]].
+
+This app will have minimal feature set to satisfy needs of users who find value in using this technique for their work management.
+
+Basic features include:
+ - 25 minute timer, 5 minute short break and 30 minute long break.
+ - Mark task as interrupted
+ - Stop and reset the timer(in case of interruption for example).
+ - Daily activity list with estimated number of pomodoros
+ - A way to mark if activity was interrupted while working or not.
+ - Statistics for viewing number of completed/interrupted pomodoros and tasks.
+
+* Worklog
+
+
+
+** TODO Create a component for a pomodoro timer
+   CLOCK: [2016-05-07 Sat 21:28]
+
+   I'm going to create a minimal timer reagent component, using devtools to drive my design and tests.
+   This timer should have:
+   - 25 minutes at the beginning
+   - Start and stop button
+   - When start is clicked it should start ticking off
+   - When zero seconds is reached it should stop ticking ang give visual sign that pomodoro is completed
+
+   Questions:
+   - How to tick off seconds reliably so that browser won't affect the speed. Probably using `setInterval` function that
+     will reduce one second every interval won't do. More appropriate would be to use dates.
+   - How to use dates in clojurescript. Do I need a library or just use javascript core function?
+   - Do I need a CSS framework or write everything myself?
+     Thinking about future, it would be easier to use some small css library that has all the responsive stuff in it.
+
+   Tasks:
+   - Select simple css framework to manage responsivness and some utility classes
+   - Create a timer layout with static numbers and buttons
+   - Make time timer tick off until zero second is reached
+   - Wire up `start` and `stop` buttons to actually start and stop the timer.
+
+*** DONE Select simple css framework that can deal different screen sizes.
+    CLOCK: [2016-05-07 Sat 21:47]--[2016-05-07 Sat 21:59] =>  0:12
+    - Google search: minimal css framework
+      - Milligram https://milligram.github.io/
+        I chose this one, mainly because it was first in the google search list. Looking at the features it suits my needs.
+      - Pure http://purecss.io/
+        This is also good css framework. I have used it in past, but I would like to try something new.
+      - List of minimalist frameworks https://github.com/neiesc/ListOfMinimalistFrameworks#framework-for-css
+        Good for a reference list, but too many to choose from
+
+*** DONE Create a timer layout with static numbers and buttons
+    CLOCK: [2016-05-07 Sat 22:00]--[2016-05-07 Sat 22:20] =>  0:20
+
+    - Add milligram library into assets folder. Downloaded milligram from https://github.com/milligram/milligram/archive/v1.1.0.zip
+    - Created a new folder under tomatee/html called css and pasted `milligram.min.css` into this folder
+    - Add link css to `index.html` and `devcards.html` to include downloaded css library(this will give me access to milligrams classes)  and custom `style.css` where I can make my own changes. Could also use CDN link, but this can cause issues when cdn goes down.
+
+      ```<link href="css/milligram.min.css" rel="stylesheet" type="text/css">
+         <link href="css/style.css" rel="stylesheet" type="text/css">
+      ```
+    - Started development environment by running `boot dev`
+    - Verified that this library was loaded by opeing http://localhost:3000 and http://localhost:3000/devcards.html#!/tomatee_devcards.core
