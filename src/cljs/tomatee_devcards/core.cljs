@@ -8,12 +8,8 @@
 
 (enable-console-print!)
 
-(defcard-rg reagent-demo
-  (views/home-page))
-
-(deftest demo-test
-  (testing "good stuff"
-    (is (= 1 1))))
+(defcard-rg static-timer
+  (views/timer))
 
 (defn main []
   (dc/start-devcard-ui!))

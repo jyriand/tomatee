@@ -13,7 +13,6 @@ Basic features include:
  - Statistics for viewing number of completed/interrupted pomodoros and tasks.
 
 * Worklog
-
 ** TODO Create a component for a pomodoro timer
    CLOCK: [2016-05-10 Tue 20:03]--[2016-05-10 Tue 20:06] =>  0:03
    CLOCK: [2016-05-07 Sat 21:28]--[2016-05-07 Sat 22:20] => 0:52
@@ -39,6 +38,7 @@ Basic features include:
    - Wire up `start` and `stop` buttons to actually start and stop the timer.
 
 *** DONE Select simple css framework that can deal different screen sizes.
+    CLOSED: [2016-05-07 Sat 21:59]
     CLOCK: [2016-05-07 Sat 21:47]--[2016-05-07 Sat 21:59] =>  0:12
     - Google search: minimal css framework
       - Milligram https://milligram.github.io/
@@ -49,6 +49,7 @@ Basic features include:
         Good for a reference list, but too many to choose from
 
 *** DONE Add milligram css library to index.html and devcards.html
+    CLOSED: [2016-05-07 Sat 22:20]
     CLOCK: [2016-05-07 Sat 22:00]--[2016-05-07 Sat 22:20] =>  0:20
 
     - Add milligram library into assets folder. Downloaded milligram from https://github.com/milligram/milligram/archive/v1.1.0.zip
@@ -62,17 +63,58 @@ Basic features include:
     - Verified that this library was loaded by opeing http://localhost:3000 and http://localhost:3000/devcards.html#!/tomatee_devcards.core
 
 *** TODO Create static timer layout devcard
-    CLOCK: [2016-05-10 Tue 20:06]--[2016-05-10 Tue 20:16] =>  0:10
+    CLOCK: [2016-05-10 Tue 20:06]--[2016-05-10 Tue 20:53] =>  0:47
 
     I will create a timer component that will display 25 minutes and will have start and stop buttons. At first this will remain static. This coincides with a devcards way of developing. Each devcard will represent some state. First, and most basic one is a static timer. By doing this incrementally I can be sure that I'm not overengineering. Biggest flaw is that I might get lost doing small things in devcards and forgetting about the bigger picture, that is about actual web application. Alternative way would be to hack together a working timer and then think about refactoring. I estimate about 20 minutes for this task.
     I'm considering adding also some tests to each card. This might be more difficult than I anticipate.
 
 
-**** TODO remove boilerplate code that came with the template
-     CLOCK: [2016-05-10 Tue 20:16]
+**** DONE remove boilerplate code that came with the template
+     CLOSED: [2016-05-10 Tue 20:22]
+     CLOCK: [2016-05-10 Tue 20:16]--[2016-05-10 Tue 20:22] =>  0:06
 
-     - removed dead code, comments and views that came with the template. Will scan through the code to see if there is more stuff that I don't need right now.
+     Removed dead code, comments and views that came with the template. Will scan through the code to see if there is more stuff that I don't need right now.
 
-**** TODO design simple box that will contain the timer
-**** TODO write unit test that will verify that timer is set to 25:00
+**** DONE design simple box that will contain the timer
+     CLOSED: [2016-05-10 Tue 20:53]
+     CLOCK: [2016-05-10 Tue 20:22]--[2016-05-10 Tue 20:53] =>  0:31
+
+     Not sure what is the best way to structure code. One way is to put everything related to timer component into one file/namespace. Other possibility is to create one ns for views, and different ns for managing time, start and stop buttons. Both ways seem like valid options. For now I will leave component view in views.cljs and later decide where the control flow code will go.
+
+
+     - create a box around timer div <2016-05-10 Tue 20:34>
+
+       Added following code to tomatee.views
+       #+BEGIN_SRC lisp
+(defn timer []
+  [:div.timer "25:00"])
+       #+END_SRC
+
+This won't do, because I wanted to make this responsive. Will read milligram's documentation about grids. I learned that I can just use classes 'row' and 'column' to create preferred grid. Not sure if '.container' main class is needed or not. This can make working inside devcards more difficult, because then I have to wrap every component into '.container' div.
+
+Changed code to this.
+#+BEGIN_SRC lisp
+(defn timer []
+  [:div.row
+   [:div.column
+    [:div.timer
+     [:div.timer-time "25:00"]]]])
+
+#+END_SRC
+
+Also added some styling. This will just create a border around timer component
+
+#+BEGIN_SRC css
+.timer {
+  border: 1px solid;
+  border-radius: 25px;
+}
+
+.timer-time {
+  font-size: 100px;
+  text-align: center;
+  color: grey;
+}
+#+END_SRC
+
 **** TODO add start and stop buttons
