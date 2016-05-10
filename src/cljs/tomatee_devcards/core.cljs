@@ -15,14 +15,5 @@
   (testing "good stuff"
     (is (= 1 1))))
 
-(defcard create-something
-  (tests
-   "Creates something and then ahsda"
-   (let [name "jaskd"]
-     (is (= "jaskd" name)))))
-
-(defn say-hello []
-  (println "Hello from file"))
-
 (defn main []
   (dc/start-devcard-ui!))

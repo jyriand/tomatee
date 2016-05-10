@@ -6,9 +6,7 @@
 (secretary/set-config! :prefix "#")
 
 (def routes
-  {"/" #(views/home-page)
-   "/about" #(views/about-page)
-   "/test" #(views/test-page)})
+  {"/" #(views/home-page)})
 
 (defn add-route [path view]
   (secretary/defroute (str path) []
@@ -17,10 +15,3 @@
 (defn init! []
   (doseq [[path view] routes]
     (add-route path view)))
-
-;; (println "Loading routes")
-;; (secretary/defroute "/" []
-;;   (session/put! :current-page #'home-page))
-
-;; (secretary/defroute "/about" []
-;;   (session/put! :current-page #'about-page))

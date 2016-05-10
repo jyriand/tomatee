@@ -14,10 +14,9 @@ Basic features include:
 
 * Worklog
 
-
-
 ** TODO Create a component for a pomodoro timer
-   CLOCK: [2016-05-07 Sat 21:28]
+   CLOCK: [2016-05-10 Tue 20:03]--[2016-05-10 Tue 20:06] =>  0:03
+   CLOCK: [2016-05-07 Sat 21:28]--[2016-05-07 Sat 22:20] => 0:52
 
    I'm going to create a minimal timer reagent component, using devtools to drive my design and tests.
    This timer should have:
@@ -49,7 +48,7 @@ Basic features include:
       - List of minimalist frameworks https://github.com/neiesc/ListOfMinimalistFrameworks#framework-for-css
         Good for a reference list, but too many to choose from
 
-*** DONE Create a timer layout with static numbers and buttons
+*** DONE Add milligram css library to index.html and devcards.html
     CLOCK: [2016-05-07 Sat 22:00]--[2016-05-07 Sat 22:20] =>  0:20
 
     - Add milligram library into assets folder. Downloaded milligram from https://github.com/milligram/milligram/archive/v1.1.0.zip
@@ -61,3 +60,19 @@ Basic features include:
       ```
     - Started development environment by running `boot dev`
     - Verified that this library was loaded by opeing http://localhost:3000 and http://localhost:3000/devcards.html#!/tomatee_devcards.core
+
+*** TODO Create static timer layout devcard
+    CLOCK: [2016-05-10 Tue 20:06]--[2016-05-10 Tue 20:16] =>  0:10
+
+    I will create a timer component that will display 25 minutes and will have start and stop buttons. At first this will remain static. This coincides with a devcards way of developing. Each devcard will represent some state. First, and most basic one is a static timer. By doing this incrementally I can be sure that I'm not overengineering. Biggest flaw is that I might get lost doing small things in devcards and forgetting about the bigger picture, that is about actual web application. Alternative way would be to hack together a working timer and then think about refactoring. I estimate about 20 minutes for this task.
+    I'm considering adding also some tests to each card. This might be more difficult than I anticipate.
+
+
+**** TODO remove boilerplate code that came with the template
+     CLOCK: [2016-05-10 Tue 20:16]
+
+     - removed dead code, comments and views that came with the template. Will scan through the code to see if there is more stuff that I don't need right now.
+
+**** TODO design simple box that will contain the timer
+**** TODO write unit test that will verify that timer is set to 25:00
+**** TODO add start and stop buttons
